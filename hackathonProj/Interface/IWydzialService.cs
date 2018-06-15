@@ -9,7 +9,8 @@ namespace hackathonProj.Interface
     bool AddWydzial(Wydzial wydzial);
     bool UpdateWydzial(Wydzial wydzial);
     bool DeleteWydzial(int? wydzialId);
-    Wydzial GetUrzad(int? wydzialId);
+    Wydzial GetWydzial(int? wydzialId);
     IList<Wydzial> GetWydzialList(WydzialSC wydzialSc);
+    Urzad GetUrzad(int? wydzialId);
   }
 }

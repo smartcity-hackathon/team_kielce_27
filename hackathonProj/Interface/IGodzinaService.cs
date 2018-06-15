@@ -11,5 +11,6 @@ namespace hackathonProj.Interface
     bool DeleteGodzina(int? godzinaId);
     Godzina GetGodzina(int? godzinaId);
     IList<Godzina> GetAccountList(GodzinaSC godzinaSc);
+    Wydzial GetWydzial(int? godzinaId);
   }
 }

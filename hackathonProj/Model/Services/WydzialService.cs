@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using hackathonProj.Extensions;
 using hackathonProj.Interface;
 using hackathonProj.Model.Entities;
 using hackathonProj.Model.SearchCriterias;
@@ -22,7 +23,7 @@ namespace hackathonProj.Model.Services
       return WydzialDAO.Delete(wydzialId);
     }
 
-    public Wydzial GetUrzad(int? wydzialId)
+    public Wydzial GetWydzial(int? wydzialId)
     {
       return WydzialDAO.Get(wydzialId);
     }
@@ -31,6 +32,13 @@ namespace hackathonProj.Model.Services
     {
       //TODO: Search criteria
       return WydzialDAO.GetList();
+    }
+
+    public Urzad GetUrzad(int? wydzialId)
+    {
+      var urzadId = WydzialDAO.Get(wydzialId)?.UrzadId;
+      var urzad = UrzadDAO.Get(urzadId);
+      return urzad.IsNotNull() ? urzad : new Urzad();
     }
   }
 }

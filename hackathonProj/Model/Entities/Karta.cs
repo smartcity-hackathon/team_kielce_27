@@ -10,7 +10,7 @@ namespace hackathonProj.Model.Entities
   public class Karta
   {
     public int? Id { get; set; }
-    public string Numer { get; set; }
+    public int Numer { get; set; }
     public string Nazwa { get; set; }
     public int? WydzialId { get; set; }
     public string Tagi { get; set; }

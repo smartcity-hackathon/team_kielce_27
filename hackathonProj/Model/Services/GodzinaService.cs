@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using hackathonProj.Extensions;
 using hackathonProj.Interface;
 using hackathonProj.Model.Entities;
 using hackathonProj.Model.SearchCriterias;
@@ -31,6 +32,13 @@ namespace hackathonProj.Model.Services
     {
       //TODO: Search criteria
       return GodzinaDAO.GetList();
+    }
+
+    public Wydzial GetWydzial(int? godzinaId)
+    {
+      var wydzialId = GodzinaDAO.Get(godzinaId)?.WydzialId;
+      var wydzial = WydzialDAO.Get(wydzialId);
+      return wydzial.IsNotNull() ? wydzial : new Wydzial();
     }
   }
 }

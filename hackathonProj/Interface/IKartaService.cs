@@ -11,5 +11,6 @@ namespace hackathonProj.Interface
     bool DeleteKarta(int? kartaId);
     Karta GetKarta(int? kartaId);
     IList<Karta> GetKartaList(KartaSC kartaSc);
+    Wydzial GetWydzial(int? kartaId);
   }
 }
