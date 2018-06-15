@@ -1,6 +1,6 @@
 ﻿namespace hackathonProj.Model.SearchCriterias
 {
-    public class AccountSC
-    {
-    }
+  public class AccountSC
+  {
+  }
 }

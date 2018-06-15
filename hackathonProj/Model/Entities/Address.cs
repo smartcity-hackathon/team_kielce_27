@@ -45,7 +45,7 @@ namespace hackathonProj.Model.Entities
     {
       using (var db = new BaseRepository())
       {
-        return !(addressId < 0) && db.Connection.Delete(new Address() { Id = addressId});
+        return !(addressId < 0) && db.Connection.Delete(new Address() { Id = addressId });
       }
     }
 
