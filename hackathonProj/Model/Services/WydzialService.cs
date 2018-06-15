@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using hackathonProj.Interface;
 using hackathonProj.Model.Entities;
 using hackathonProj.Model.SearchCriterias;
