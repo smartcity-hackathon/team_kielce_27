@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using hackathonProj.Extensions;
 using hackathonProj.Interface;
 using hackathonProj.Model.Entities;
@@ -28,10 +30,29 @@ namespace hackathonProj.Model.Services
       return KartaDAO.Get(kartaId);
     }
 
-    public IList<Karta> GetKartaList(KartaSC kartaSc)
+    public IList<Karta> GetKartaList(int startRecord = 0, int maxRecord = Int32.MaxValue, KartaSC kartaSc = null)
     {
-      //TODO: Search criteria
-      return KartaDAO.GetList();
+      var list = KartaDAO.GetList();
+
+      if (startRecord != 0)
+        list = list.Skip(startRecord).ToList();
+      if (maxRecord != 0)
+        list = list.Take(maxRecord).ToList();
+      if (kartaSc.IsNull()) return list;
+
+      //TODO: NORMALNE porównywanie godzin pracy
+      if (kartaSc.Id.IsNotNull())
+        list = list.Where(x => x.Id == kartaSc.Id).ToList();
+      if (kartaSc.Numer.IsNotNull())
+        list = list.Where(x => x.Numer == kartaSc.Numer).ToList();
+      if (kartaSc.Nazwa.IsNotNull())
+        list = list.Where(x => x.Nazwa.Equals(kartaSc.Nazwa)).ToList();
+      if (kartaSc.Wydzial.IsNotNull())
+        list = list.Where(x => x.WydzialId == kartaSc.Wydzial.Id).ToList();
+      if (kartaSc.Tagi.IsNotNull())
+        list = list.Where(x => x.Tagi.Equals(kartaSc.Tagi)).ToList();   
+
+      return list;
     }
 
     public Wydzial GetWydzial(int? kartaId)

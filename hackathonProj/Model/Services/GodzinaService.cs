@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using hackathonProj.Extensions;
 using hackathonProj.Interface;
 using hackathonProj.Model.Entities;
@@ -28,10 +30,37 @@ namespace hackathonProj.Model.Services
       return GodzinaDAO.Get(godzinaId);
     }
 
-    public IList<Godzina> GetAccountList(GodzinaSC godzinaSc)
+    public IList<Godzina> GetAccountList(int startRecord = 0, int maxRecord = Int32.MaxValue, GodzinaSC godzinaSc = null)
     {
-      //TODO: Search criteria
-      return GodzinaDAO.GetList();
+      var list = GodzinaDAO.GetList();
+
+      if (startRecord != 0)
+        list = list.Skip(startRecord).ToList();
+      if (maxRecord != 0)
+        list = list.Take(maxRecord).ToList();
+      if (godzinaSc.IsNull()) return list;
+
+      //TODO: NORMALNE porównywanie godzin pracy
+      if (godzinaSc.Id.IsNotNull())
+        list = list.Where(x => x.Id == godzinaSc.Id).ToList();
+      if (godzinaSc.Wydzial.IsNotNull())
+        list = list.Where(x => x.WydzialId == godzinaSc.Wydzial.Id).ToList();
+      if (godzinaSc.Pon.IsNotNull())
+        list = list.Where(x => x.Pon.Equals(godzinaSc.Pon)).ToList();
+      if (godzinaSc.Wto.IsNotNull())
+        list = list.Where(x => x.Wto.Equals(godzinaSc.Wto)).ToList();
+      if (godzinaSc.Sro.IsNotNull())
+        list = list.Where(x => x.Sro.Equals(godzinaSc.Sro)).ToList();
+      if (godzinaSc.Czw.IsNotNull())
+        list = list.Where(x => x.Czw.Equals(godzinaSc.Czw)).ToList();
+      if (godzinaSc.Pia.IsNotNull())
+        list = list.Where(x => x.Pia.Equals(godzinaSc.Pia)).ToList();
+      if (godzinaSc.Sob.IsNotNull())
+        list = list.Where(x => x.Sob.Equals(godzinaSc.Sob)).ToList();
+      if (godzinaSc.Nie.IsNotNull())
+        list = list.Where(x => x.Nie.Equals(godzinaSc.Nie)).ToList();
+
+      return list;
     }
 
     public Wydzial GetWydzial(int? godzinaId)

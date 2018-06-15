@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using hackathonProj.Model.Entities;
 using hackathonProj.Model.SearchCriterias;
 
@@ -10,7 +11,7 @@ namespace hackathonProj.Interface
     bool UpdateGodzina(Godzina godzina);
     bool DeleteGodzina(int? godzinaId);
     Godzina GetGodzina(int? godzinaId);
-    IList<Godzina> GetAccountList(GodzinaSC godzinaSc);
+    IList<Godzina> GetAccountList(int startRecord = 0, int maxRecord = Int32.MaxValue, GodzinaSC godzinaSc = null);
     Wydzial GetWydzial(int? godzinaId);
   }
 }

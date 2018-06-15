@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using hackathonProj.Extensions;
 using hackathonProj.Interface;
 using hackathonProj.Model.Entities;
@@ -28,7 +29,7 @@ namespace hackathonProj.Model.Services
       return TerminDAO.Get(terminId);
     }
 
-    public IList<Termin> GetTerminList(TerminSC accountSc)
+    public IList<Termin> GetTerminList(int startRecord = 0, int maxRecord = Int32.MaxValue, TerminSC accountSc = null)
     {
       //TODO: Search criteria
       return TerminDAO.GetList();

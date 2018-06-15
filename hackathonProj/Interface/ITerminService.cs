@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using hackathonProj.Model.Entities;
 using hackathonProj.Model.SearchCriterias;
 
@@ -10,7 +11,7 @@ namespace hackathonProj.Interface
       bool UpdateTermin(Termin termin);
       bool DeleteTermin(int? terminId);
       Termin GetTermin(int? terminId);
-      IList<Termin> GetTerminList(TerminSC accountSc);
+      IList<Termin> GetTerminList(int startRecord = 0, int maxRecord = Int32.MaxValue, TerminSC accountSc = null);
       Account GetAccount(int? terminId);
       Wydzial GetWydzial(int? terminId);
       Karta GetKarta(int? terminId);

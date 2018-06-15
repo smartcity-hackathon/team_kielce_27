@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using hackathonProj.Model.Entities;
 using hackathonProj.Model.SearchCriterias;
 
@@ -10,6 +11,6 @@ namespace hackathonProj.Interface
     bool UpdateSzpital(Szpital szpital);
     bool DeleteSzpital(int? szpitalId);
     Szpital GetSzpital(int? szpitalId);
-    IList<Szpital> GetSzpitalList(SzpitalSC accountSc);
+    IList<Szpital> GetSzpitalList(int startRecord = 0, int maxRecord = Int32.MaxValue, SzpitalSC accountSc = null);
   }
 }
