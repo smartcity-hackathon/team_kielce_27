@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using hackathonProj.Interface;
 using hackathonProj.Model.Entities;
 using hackathonProj.Model.SearchCriterias;
@@ -27,7 +28,7 @@ namespace hackathonProj.Model.Services
       return UrzadDAO.Get(urzadId);
     }
 
-    public IList<Urzad> GetUrzadList(UrzadSC urzadSc)
+    public IList<Urzad> GetUrzadList(int startRecord = 0, int maxRecord = Int32.MaxValue, UrzadSC urzadSc = null)
     {
       //TODO: Search criteria
       return UrzadDAO.GetList();

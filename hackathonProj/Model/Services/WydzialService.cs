@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using hackathonProj.Extensions;
 using hackathonProj.Interface;
 using hackathonProj.Model.Entities;
@@ -28,7 +29,7 @@ namespace hackathonProj.Model.Services
       return WydzialDAO.Get(wydzialId);
     }
 
-    public IList<Wydzial> GetWydzialList(WydzialSC wydzialSc)
+    public IList<Wydzial> GetWydzialList(int startRecord = 0, int maxRecord = Int32.MaxValue, WydzialSC wydzialSc = null)
     {
       //TODO: Search criteria
       return WydzialDAO.GetList();
