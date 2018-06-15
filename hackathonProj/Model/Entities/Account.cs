@@ -4,7 +4,6 @@ using System.Linq;
 using Dapper.FastCrud;
 using hackathonProj.Repository;
 using hackathonProj.Extensions;
-using hackathonProj.Model.SearchCriterias;
 
 namespace hackathonProj.Model.Entities
 {
@@ -47,7 +46,7 @@ namespace hackathonProj.Model.Entities
     {
       using (var db = new BaseRepository())
       {
-        return !(accountId < 0) && db.Connection.Delete(accountId);
+        return !(accountId < 0) && db.Connection.Delete(new Account() { Id = accountId });
       }
     }
 
@@ -55,7 +54,7 @@ namespace hackathonProj.Model.Entities
     {
       using (var db = new BaseRepository())
       {
-        var account = db.Connection.Get(new Account() {Id = accountId});
+        var account = db.Connection.Get(new Account() { Id = accountId });
         return account.IsNotNull() ? account : new Account();
       }
     }
@@ -64,7 +63,7 @@ namespace hackathonProj.Model.Entities
     {
       using (var db = new BaseRepository())
       {
-       return db.Connection.Find<Account>().ToList();
+        return db.Connection.Find<Account>().ToList();
       }
     }
   }

@@ -7,7 +7,7 @@ using hackathonProj.Repository;
 
 namespace hackathonProj.Model.Entities
 {
-  public class Urzad
+  public class Szpital
   {
     public int? Id { get; set; }
     public string Nazwa { get; set; }
@@ -20,50 +20,50 @@ namespace hackathonProj.Model.Entities
     public string json_geo { get; set; }
   }
 
-  public static class UrzadDAO
+  public static class SzpitalDAO
   {
-    public static bool Add(Urzad urzad)
+    public static bool Add(Szpital szpital)
     {
       using (var db = new BaseRepository())
       {
-        if (urzad.IsNull())
+        if (szpital.IsNull())
           return false;
 
-        db.Connection.Insert(urzad);
+        db.Connection.Insert(szpital);
         return true;
       }
     }
 
-    public static bool Update(Urzad urzad)
+    public static bool Update(Szpital szpital)
     {
       using (var db = new BaseRepository())
       {
-        return !urzad.IsNull() && db.Connection.Update(urzad);
+        return !szpital.IsNull() && db.Connection.Update(szpital);
       }
     }
 
-    public static bool Delete(int? urzadId)
+    public static bool Delete(int? szpitalId)
     {
       using (var db = new BaseRepository())
       {
-        return !(urzadId < 0) && db.Connection.Delete(new Urzad() { Id = urzadId });
+        return !(szpitalId < 0) && db.Connection.Delete(new Szpital() { Id = szpitalId });
       }
     }
 
-    public static Urzad Get(int? urzadId)
+    public static Szpital Get(int? szpitalId)
     {
       using (var db = new BaseRepository())
       {
-        var urzad = db.Connection.Get(new Urzad() { Id = urzadId });
-        return urzad.IsNotNull() ? urzad : new Urzad();
+        var szpital = db.Connection.Get(new Szpital() { Id = szpitalId });
+        return szpital.IsNotNull() ? szpital : new Szpital();
       }
     }
 
-    public static IList<Urzad> GetList(int startRecord = 0, int maxRecord = Int32.MaxValue)
+    public static IList<Szpital> GetList(int startRecord = 0, int maxRecord = Int32.MaxValue)
     {
       using (var db = new BaseRepository())
       {
-        return db.Connection.Find<Urzad>().ToList();
+        return db.Connection.Find<Szpital>().ToList();
       }
     }
   }
