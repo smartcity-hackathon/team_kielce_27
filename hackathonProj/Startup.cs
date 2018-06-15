@@ -34,7 +34,10 @@ namespace hackathonProj
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseMvc();
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute("default", "{controller=Users}/{action=Index}/");
+            });
         }
     }
 }
