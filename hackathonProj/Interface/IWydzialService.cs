@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using hackathonProj.Model.Entities;
 using hackathonProj.Model.SearchCriterias;
 
@@ -10,7 +11,7 @@ namespace hackathonProj.Interface
     bool UpdateWydzial(Wydzial wydzial);
     bool DeleteWydzial(int? wydzialId);
     Wydzial GetWydzial(int? wydzialId);
-    IList<Wydzial> GetWydzialList(WydzialSC wydzialSc);
+    IList<Wydzial> GetWydzialList(int startRecord = 0, int maxRecord = Int32.MaxValue, WydzialSC wydzialSc = null);
     Urzad GetUrzad(int? wydzialId);
   }
 }
