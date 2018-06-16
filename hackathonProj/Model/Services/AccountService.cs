@@ -60,7 +60,7 @@ namespace hackathonProj.Model.Services
       if (accountSc.Key.IsNotNull())
         list = list.Where(x => x.Key == accountSc.Key).ToList();
       if (accountSc.AccountType.IsNotNull())
-        list = list.Where(x => x.AccountType == accountSc.AccountType).ToList();
+        list = list.Where(x => x.AccountType.Contains(accountSc.AccountType)).ToList();
       return list;
     }
   }

@@ -9,8 +9,8 @@
     public string Name1 { get; set; }
     public string Name2 { get; set; }
     public string Surname { get; set; }
-    public char Sex { get; set; }
+    public string Sex { get; set; }
     public string Key { get; set; }
-    public char AccountType { get; set; }
+    public string AccountType { get; set; }
   }
 }
