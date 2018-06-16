@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using hackathonProj.Model.Entities;
+﻿using System.Linq;
 using hackathonProj.Model.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace hackathonProj.Controllers
 {
+  [Route("api/Termin")]
   public class TerminController : Controller
   {
-    [Route("Termin")]
-    [Route("Termin/[controller]")]
     [HttpGet("{Id}")]
     public IActionResult GetbyId(int id)
     {
@@ -24,6 +19,16 @@ namespace hackathonProj.Controllers
     {
       var ts = new TerminService();
       return Json(ts.GetTerminList());
+    }
+
+    [Route("SetTime")]
+    [HttpGet("{wydzialId}")]
+    public IActionResult Get(int wydzialId)
+    {
+      var gs = new GodzinaService();
+      var times = gs.ParseTimes().Where(x => x.wydzialId == wydzialId).ToList();
+      ViewBag.Times = times;
+      return View("Date");
     }
   }
 }

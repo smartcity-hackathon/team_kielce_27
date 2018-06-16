@@ -31,26 +31,27 @@ namespace hackathonProj.Model.Services
       return GodzinaDAO.Get(godzinaId);
     }
 
-    public List<Tuple<string, string, string, int>> ParseTimes()
+    public List<TimeObject> ParseTimes()
     {
       var lista = GodzinaDAO.GetList();
-      var temp = new List<Tuple<string, string, string, int>>();
+      var temp = new List<TimeObject>();
 
       foreach (Godzina x in lista)
       {
         PropertyInfo[] properties = x.GetType().GetProperties();
         foreach (var PropertyInfo in properties)
         {
-          int pos;
-          string str;
-          if (PropertyInfo.Name != "Id" && PropertyInfo.Name != "WydzialId" && PropertyInfo.GetValue(x, null).IsNotNull())
+          if (PropertyInfo.Name == "Id" || PropertyInfo.Name == "WydzialId" ||
+              !PropertyInfo.GetValue(x, null).IsNotNull()) continue;
+          var str = PropertyInfo.GetValue(x, null).ToString().Replace(" ", "");
+          var parts = str.Split('-');
+          temp.Add(new TimeObject()
           {
-            str = PropertyInfo.GetValue(x, null).ToString().Replace(" ", "");
-            var parts = str.Split('-');
-            temp.Add(new Tuple<string, string, string, int>(parts[0], parts[1], PropertyInfo.Name, (int)x.Id));
-          }
-
-          //temp.Add();
+            TimeOd = parts[0],
+            TimeDo = parts[1],
+            Day = PropertyInfo.Name,
+            wydzialId = (int)x.Id
+          });
         }
       }
 
@@ -67,7 +68,6 @@ namespace hackathonProj.Model.Services
         list = list.Take(maxRecord).ToList();
       if (godzinaSc.IsNull()) return list;
 
-      //TODO: NORMALNE porównywanie godzin pracy
       if (godzinaSc.Id.IsNotNull())
         list = list.Where(x => x.Id == godzinaSc.Id).ToList();
       if (godzinaSc.Wydzial.IsNotNull())
