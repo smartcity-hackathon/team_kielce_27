@@ -12,14 +12,16 @@ namespace hackathonProj.Controllers
     [Route("Users/[controller]")]
     public class UserController : Controller
     {
-        public string response() {
-            return "ok";
-        }
-        [Route("Users/Index")]
+    //    public string response() {
+    //        return "ok";
+    //    }
+        [Route("Index")]
         public IActionResult Index()
         {
-            return View();
+            ViewData["Test"] = "TESTETSTESTES";
+            return View("~/Views/Shared/Users.cshtml");
         }
+
         [HttpPost("Create")]
         public IActionResult Create([FromBody]Model.Entities.Account account)
         {
