@@ -30,6 +30,30 @@ namespace hackathonProj.Model.Services
       return GodzinaDAO.Get(godzinaId);
     }
 
+        public List<Tuple<string, string, string, int>> parseddata() {
+            var lista = GetAccountList();
+            var temp = new List<Tuple<string, string, string, int>>();
+            foreach (Godzina x in lista)
+            {
+                string od,doo;
+                int index = x.Pon.IndexOf("-");
+                od = x.Pon.Substring(0, index);
+                doo = x.Pon.Substring(index, x.Pon.Length);
+
+
+                temp.Append(new Tuple<string, string, string, int>(od, doo, nameof(x.Pon),(int)x.WydzialId));
+                temp.Append(new Tuple<string, string, string, int>(od, doo, nameof(x.Wto), (int)x.WydzialId));
+                temp.Append(new Tuple<string, string, string, int>(od, doo, nameof(x.Sro), (int)x.WydzialId));
+                temp.Append(new Tuple<string, string, string, int>(od, doo, nameof(x.Czw), (int)x.WydzialId));
+                temp.Append(new Tuple<string, string, string, int>(od, doo, nameof(x.Pia), (int)x.WydzialId));
+                if(x.Sob != null)
+                    temp.Append(new Tuple<string, string, string, int>(od, doo, nameof(x.Sob), (int)x.WydzialId));
+
+            }
+
+            return temp;
+        }
+
     public IList<Godzina> GetAccountList(int startRecord = 0, int maxRecord = Int32.MaxValue, GodzinaSC godzinaSc = null)
     {
       var list = GodzinaDAO.GetList();
