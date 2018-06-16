@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+<<<<<<< HEAD
 using System.Linq;
+=======
+>>>>>>> 0d4ee11443d9742f5227fab14de97c15ca85fc6a
 using hackathonProj.Extensions;
 using hackathonProj.Interface;
 using hackathonProj.Model.Entities;

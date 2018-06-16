@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Dapper.FastCrud;
+using hackathonProj.Extensions;
+using hackathonProj.Model.Entities;
+using hackathonProj.Repository;
 using Microsoft.AspNetCore.Mvc;
 
 namespace hackathonProj.Controllers
@@ -13,7 +17,7 @@ namespace hackathonProj.Controllers
     [HttpGet]
     public IEnumerable<string> Get()
     {
-      return new string[] { "value1", "value2" };
+      return new string[] { "value1", "value2"};
     }
 
     // GET api/values/5
