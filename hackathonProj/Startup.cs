@@ -38,6 +38,8 @@ namespace hackathonProj
             {
                 routes.MapRoute("default", "{controller=Users}/{action=Index}/");
             });
+
+          app.UseStaticFiles();
         }
     }
 }
