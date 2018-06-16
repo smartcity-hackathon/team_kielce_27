@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using hackathonProj.Model.Services;
+﻿using hackathonProj.Model.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace hackathonProj.Controllers
@@ -13,16 +9,19 @@ namespace hackathonProj.Controllers
         {
             return View();
         }
+
         [HttpGet]
-        public IActionResult GetAll() {
+        public IActionResult GetAll()
+        {
             var ks = new KartaService();
             return Json(ks.GetKartaList());
         }
+
         [HttpGet("{Id}")]
-        public IActionResult GetWydzial(int id) {
+        public IActionResult GetWydzial(int id)
+        {
             var ks = new KartaService();
             return Json(ks.GetWydzial(id));
-
         }
     }
 }

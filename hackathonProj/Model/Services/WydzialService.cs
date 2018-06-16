@@ -38,7 +38,6 @@ namespace hackathonProj.Model.Services
                 list = list.Skip(startRecord).ToList();
             if (maxRecord != 0)
                 list = list.Take(maxRecord).ToList();
-
             if (wydzialSc.IsNull())
                 return list;
             if (wydzialSc.Id.IsNotNull())
@@ -49,10 +48,6 @@ namespace hackathonProj.Model.Services
                 list = list.Where(x => x.Skrot.Equals(wydzialSc.Skrot)).ToList();
             if (wydzialSc.Urzad.Id.IsNotNull())
                 list = list.Where(x => x.UrzadId == wydzialSc.Urzad.Id).ToList();
-
-
-
-            //TODO: Search criteria
             return list;
     }
 

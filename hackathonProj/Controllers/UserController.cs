@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using hackathonProj.Model.Services;
-using System.IO;
-using hackathonProj.Model.Entities;
 using hackathonProj.Extensions;
 
 namespace hackathonProj.Controllers
@@ -14,10 +9,6 @@ namespace hackathonProj.Controllers
   [Route("Users/[controller]")]
   public class UserController : Controller
   {
-    //    public string response() {
-    //        return "ok";
-    //    }
-
     [HttpPost("Create")]
     public IActionResult Create(Model.Entities.Account account)
     {
@@ -28,20 +19,14 @@ namespace hackathonProj.Controllers
         return new OkResult();
       }
       catch { return new BadRequestResult(); }
-
-
-      //accounts.AddAccount(new Model.Entities.Account { })
-
-
-      // return View();
     }
+
     [HttpGet("{Get}")]
     public IActionResult Get(string name)
     {
       AccountService acc = new AccountService();
       var temp = acc.GetAccountList(accountSc: new Model.SearchCriterias.AccountSC() { Username = name }).FirstOrDefault();
       return Json(temp);
-
     }
 
     [HttpPost("{Login}")]

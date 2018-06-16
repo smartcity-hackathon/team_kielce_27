@@ -36,7 +36,7 @@ namespace hackathonProj.Model.Services
 
       if (startRecord != 0)
         list = list.Skip(startRecord).ToList();
-      if(maxRecord != 0)
+      if (maxRecord != 0)
         list = list.Take(maxRecord).ToList();
       if (accountSc.IsNull()) return list;
 

@@ -38,9 +38,9 @@ namespace hackathonProj.Model.Services
         list = list.Skip(startRecord).ToList();
       if (maxRecord != 0)
         list = list.Take(maxRecord).ToList();
-      if (kartaSc.IsNull()) return list;
+      if (kartaSc.IsNull())
+        return list;
 
-      //TODO: NORMALNE porównywanie godzin pracy
       if (kartaSc.Id.IsNotNull())
         list = list.Where(x => x.Id == kartaSc.Id).ToList();
       if (kartaSc.Numer.IsNotNull())
@@ -50,7 +50,7 @@ namespace hackathonProj.Model.Services
       if (kartaSc.Wydzial.IsNotNull())
         list = list.Where(x => x.WydzialId == kartaSc.Wydzial.Id).ToList();
       if (kartaSc.Tagi.IsNotNull())
-        list = list.Where(x => x.Tagi.Equals(kartaSc.Tagi)).ToList();   
+        list = list.Where(x => x.Tagi.Equals(kartaSc.Tagi)).ToList();
 
       return list;
     }

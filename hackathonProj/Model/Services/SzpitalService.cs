@@ -30,7 +30,6 @@ namespace hackathonProj.Model.Services
 
     public IList<Szpital> GetSzpitalList(int startRecord = 0, int maxRecord = Int32.MaxValue, SzpitalSC szpitalSc = null)
     {
-      //TODO: Search criteria
       return SzpitalDAO.GetList();
     }
   }

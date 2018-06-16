@@ -49,7 +49,7 @@ namespace hackathonProj.Model.Services
             var parts = str.Split('-');
             temp.Add(new Tuple<string, string, string, int>(parts[0], parts[1], PropertyInfo.Name, (int)x.Id));
           }
-            
+
           //temp.Add();
         }
       }

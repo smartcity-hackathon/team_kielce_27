@@ -1,5 +1,4 @@
-﻿
-using System.Linq;
+﻿using System.Linq;
 using hackathonProj.Extensions;
 using hackathonProj.Model.Services;
 using Microsoft.AspNetCore.Mvc;

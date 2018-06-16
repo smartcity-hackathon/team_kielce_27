@@ -51,29 +51,29 @@ namespace hackathonProj.Model.Services
       return karta.IsNotNull() ? karta : new Karta();
     }
 
-        public IList<Termin> GetTerminList(int startRecord = 0, int maxRecord = Int32.MaxValue, TerminSC terminSc = null)
-        {
-            var list = TerminDAO.GetList();
-            if (startRecord != 0)
-                list = list.Skip(startRecord).ToList();
-            if (maxRecord != 0)
-                list = list.Take(maxRecord).ToList();
-            if (terminSc.Id.IsNotNull())
-                list = list.Where(x => x.Id == terminSc.Id).ToList();
-            if (terminSc.Account.IsNotNull())
-                list = list.Where(x => x.AccountId == terminSc.Account.Id).ToList();
-            if (terminSc.Wydzial.IsNotNull())
-                list = list.Where(x => x.WydzialId == terminSc.Wydzial.Id).ToList();
-            if (terminSc.CzasStworzenia.IsNotNull())
-                list = list.Where(x => x.CzasStworzenia == terminSc.CzasStworzenia).ToList();
-            if (terminSc.CzasUmowienia.IsNotNull())
-                list = list.Where(x => x.CzasStworzenia == terminSc.CzasUmowienia).ToList();
-            if (terminSc.Karta.IsNotNull())
-                list = list.Where(x => x.KartaId == terminSc.Karta.Id).ToList();
-            if (terminSc.Aktywny.IsNotNull())
-                list = list.Where(x => x.Aktywny == terminSc.Aktywny).ToList();
-            return list;
+    public IList<Termin> GetTerminList(int startRecord = 0, int maxRecord = Int32.MaxValue, TerminSC terminSc = null)
+    {
+      var list = TerminDAO.GetList();
+      if (startRecord != 0)
+        list = list.Skip(startRecord).ToList();
+      if (maxRecord != 0)
+        list = list.Take(maxRecord).ToList();
+      if (terminSc.Id.IsNotNull())
+        list = list.Where(x => x.Id == terminSc.Id).ToList();
+      if (terminSc.Account.IsNotNull())
+        list = list.Where(x => x.AccountId == terminSc.Account.Id).ToList();
+      if (terminSc.Wydzial.IsNotNull())
+        list = list.Where(x => x.WydzialId == terminSc.Wydzial.Id).ToList();
+      if (terminSc.CzasStworzenia.IsNotNull())
+        list = list.Where(x => x.CzasStworzenia == terminSc.CzasStworzenia).ToList();
+      if (terminSc.CzasUmowienia.IsNotNull())
+        list = list.Where(x => x.CzasStworzenia == terminSc.CzasUmowienia).ToList();
+      if (terminSc.Karta.IsNotNull())
+        list = list.Where(x => x.KartaId == terminSc.Karta.Id).ToList();
+      if (terminSc.Aktywny.IsNotNull())
+        list = list.Where(x => x.Aktywny == terminSc.Aktywny).ToList();
+      return list;
 
-        }
+    }
   }
 }

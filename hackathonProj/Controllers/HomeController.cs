@@ -31,13 +31,5 @@ namespace hackathonProj.Controllers
     {
       return View("Date");
     }
-
-    [Route("Parse")]
-    public IActionResult Parse()
-    {
-      GodzinaService gs = new GodzinaService();
-      var a = gs.ParseTimes();
-      return View("Date");
-    }
   }
 }
