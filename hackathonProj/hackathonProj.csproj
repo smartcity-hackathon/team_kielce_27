@@ -16,4 +16,17 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="Views\Shared\Date.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Page.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Views\User\" />
+  </ItemGroup>
+
 </Project>

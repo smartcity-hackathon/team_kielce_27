@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using hackathonProj.Extensions;
 using hackathonProj.Interface;
 using hackathonProj.Model.Entities;
@@ -30,29 +31,31 @@ namespace hackathonProj.Model.Services
       return GodzinaDAO.Get(godzinaId);
     }
 
-        public List<Tuple<string, string, string, int>> parseddata() {
-            var lista = GetAccountList();
-            var temp = new List<Tuple<string, string, string, int>>();
-            foreach (Godzina x in lista)
-            {
-                string od,doo;
-                int index = x.Pon.IndexOf("-");
-                od = x.Pon.Substring(0, index);
-                doo = x.Pon.Substring(index, x.Pon.Length);
+    public List<Tuple<string, string, string, int>> ParseTimes()
+    {
+      var lista = GodzinaDAO.GetList();
+      var temp = new List<Tuple<string, string, string, int>>();
 
-
-                temp.Append(new Tuple<string, string, string, int>(od, doo, nameof(x.Pon),(int)x.WydzialId));
-                temp.Append(new Tuple<string, string, string, int>(od, doo, nameof(x.Wto), (int)x.WydzialId));
-                temp.Append(new Tuple<string, string, string, int>(od, doo, nameof(x.Sro), (int)x.WydzialId));
-                temp.Append(new Tuple<string, string, string, int>(od, doo, nameof(x.Czw), (int)x.WydzialId));
-                temp.Append(new Tuple<string, string, string, int>(od, doo, nameof(x.Pia), (int)x.WydzialId));
-                if(x.Sob != null)
-                    temp.Append(new Tuple<string, string, string, int>(od, doo, nameof(x.Sob), (int)x.WydzialId));
-
-            }
-
-            return temp;
+      foreach (Godzina x in lista)
+      {
+        PropertyInfo[] properties = x.GetType().GetProperties();
+        foreach (var PropertyInfo in properties)
+        {
+          int pos;
+          string str;
+          if (PropertyInfo.Name != "Id" && PropertyInfo.Name != "WydzialId" && PropertyInfo.GetValue(x, null).IsNotNull())
+          {
+            str = PropertyInfo.GetValue(x, null).ToString().Replace(" ", "");
+            var parts = str.Split('-');
+            temp.Add(new Tuple<string, string, string, int>(parts[0], parts[1], PropertyInfo.Name, (int)x.Id));
+          }
+            
+          //temp.Add();
         }
+      }
+
+      return temp;
+    }
 
     public IList<Godzina> GetAccountList(int startRecord = 0, int maxRecord = Int32.MaxValue, GodzinaSC godzinaSc = null)
     {

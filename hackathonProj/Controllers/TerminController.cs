@@ -17,15 +17,11 @@ namespace hackathonProj.Controllers
       //      return View();
       //  }
         [HttpGet("{Id}")]
-        public IActionResult GetbyId(int id) {
-            TerminService ts = new TerminService();
-            
-            if (id != null)
-                return Json(ts.GetTerminList(terminSc: new Model.SearchCriterias.TerminSC() { Id = id }).FirstOrDefault());
-            else
-                return Json(ts.GetTerminList());
-            
+        public IActionResult GetbyId(int id)
+        {
+          TerminService ts = new TerminService();
 
+          return Json(ts.GetTerminList(terminSc: new Model.SearchCriterias.TerminSC() { Id = id }).FirstOrDefault());
         }
         [HttpGet]
         public IActionResult Get()
