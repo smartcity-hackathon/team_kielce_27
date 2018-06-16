@@ -23,7 +23,7 @@ namespace hackathonProj.Controllers
         }
 
         [HttpPost("Create")]
-        public IActionResult Create([FromBody]Model.Entities.Account account)
+        public IActionResult Create(Model.Entities.Account account)
         {
             AccountService accounts = new AccountService();
             try
